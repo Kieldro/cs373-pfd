@@ -1,42 +1,22 @@
 # file variables
 python=true
-java=false
 
+source="PFD.py"
 inFile="RunCollatz.in"
 outFile="RunCollatz.out"
 compile=false
 grep=false
 noError=false
 
-if $python; then
-	echo PYTHON UNIT TESTS...
-	python TestCollatz.py &> TestCollatz.py.out
+echo RUNNING UNIT TESTS...
+#python TestCollatz.py &> TestCollatz.py.out
 
-	echo RUNNING PYTHON CODE...
-	python Collatz.py < $inFile > $outFile
-	
-	echo CHECKING OUTPUT...
-	diff -lc RunCollatz.out RunCollatz.in
-fi
+echo RUNNING SOURCE...
+python $source < $inFile > $outFile
 
-if $java; then
-	if $compile; then
-		echo COMPILING...
-		javac *.java
-		noError=([ $? == 0 ])
-	fi
+echo CHECKING OUTPUT...
+#diff -lc RunCollatz.out RunCollatz.in
 
-	if $noError; then		# don't exectute if there were compilation errors
-		echo COMPILED successfully.
-		echo EXECTUTING...
-		java -ea strMatch $pattern $source $outFile
-	fi
-
-	if $grep; then
-		echo GREP for string in $source...
-		time grep -nm 1 'Can you find ThIs?' $source
-	fi
-fi
 << '--MULTICOMMENT--'
 
 free 
@@ -46,11 +26,11 @@ comments!
 echo GENERATING COMMIT LOG...
 git log > Collatz.log
 
-echo UPDATING SPHERECOLLATZ FILE...
-cp Collatz.py SphereCollatz.py
+echo UPDATING SPHERE FILE...
+cp $source Sphere$source
 
 echo RUNNING PYDOC...
-pydoc -w ./Collatz.py
+pydoc -w ./$source
 
 #echo ZIPPING FILE...
 
