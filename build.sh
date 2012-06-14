@@ -2,35 +2,36 @@
 python=true
 
 source="PFD.py"
+unit="TestPFD.py"
 inFile="RunPFD.in"
 outFile="RunPFD.out"
-compile=false
-grep=false
 noError=false
 
+
 echo RUNNING UNIT TESTS...
-#python TestCollatz.py &> TestCollatz.py.out
+python $unit #&> $unit.out
 
-echo RUNNING SOURCE...
-python $source < $inFile #> $outFile
+if ([ $? -eq 0 ]); then
+	echo RUNNING SOURCE...
+	python $source < $inFile #> $outFile
 
-echo CHECKING OUTPUT...
-#diff -lc RunCollatz.out RunCollatz.in
+<<MULTICOMMENT
+	echo CHECKING OUTPUT...
+	diff -lc RunPFD.out RunPFD.in
 
-<< '--MULTICOMMENT--'
+	echo GENERATING COMMIT LOG...
+	git log > PFD.log
 
-free 
-comments!
---MULTICOMMENT--
+	echo UPDATING SPHERE FILE...
+	cp $source Sphere$source
 
-echo GENERATING COMMIT LOG...
-git log > PFD.log
+	echo RUNNING PYDOC...
+	pydoc -w ./$source
 
-echo UPDATING SPHERE FILE...
-cp $source Sphere$source
+	#echo ZIPPING FILE...
+	
+	
+# multicomment cannot have leading spaces
+MULTICOMMENT
 
-echo RUNNING PYDOC...
-pydoc -w ./$source
-
-#echo ZIPPING FILE...
-
+fi
