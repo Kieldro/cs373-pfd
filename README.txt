@@ -8,8 +8,8 @@ E-mail: kieldro@gmail.com
 Estimated number of hours: 12
 Actual    number of hours:
 
-Partner First Name:
-Partner Last Name:
+Partner First Name: Fayze
+Partner Last Name: Rahman
 Partner EID:
 Partner E-mail:
 Partner Estimated number of hours:
@@ -21,6 +21,7 @@ GitHub Repository Name: cs373-pfd
 
 Comments:
 * hashbang in script?
+* modify loop inside loop?
 
 ----------------
 Pair Programming

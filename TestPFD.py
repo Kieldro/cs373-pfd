@@ -1,3 +1,3 @@
 import PFD
 
-PFD.pfdPrint()
+PFD.output()

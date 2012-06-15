@@ -1,36 +1,59 @@
 # HASHBANG
 #?!/usr/bin/env python
 
+import sys
+
+DEBUG = True
+dWrite = sys.stderr.write		# aliasing?
+
 s = 0
 a = 1
 i = 2
 
 def read (x):
 	"""
-		No parameters
+		Read and parse input.
 	"""
-	s = raw_input()		# inputs an entire line
+	line = raw_input()		# inputs an entire line
+	tokens = line.split()		# splits string into list of string tokens
+	iList = [int(x) for x in tokens]		# casts all the strings into ints
+	n = iList[0]		# number of tasks
+	m = iList[1]		# number of rules
+	assert m >= 1, 'm is too small'		# must be at least 1 task?
+	if DEBUG: dWrite('number of tasks n: {}\n'.format(n) )
+	if DEBUG: dWrite('number of rules m: {}\n'.format(m) )
 	
-	a = s.split()		# splits string into list of string tokens
+	for i in xrange(m):
+		line = raw_input()
+		tokens = line.split()
+		iList = [int(x) for x in tokens]
+		
+		target = iList[0]
+		if DEBUG: dWrite('target: {}\n'.format(target) )
+		k = iList[1]		# number of dependents
+		assert k > 0, 'no dependents'		# must be at least 1 dependent?
+		dependents = iList[2:]
+		if DEBUG: dWrite('dependents: {}\n'.format(dependents) )
+			
 	
-	i = [int(x) for x in a]		# casts all the strings into ints
+	
+	
+	
 
-
-def pfdPrint ():
+def output ():
 	"""
 		pydoc
 	"""
 	
-	print 's: ' + str(s)
-	print 'a: ' + str(a)
-	print "i: " + str(i)
+	print 's:', s
+	print 'a:', a
+	print 'i:', i
 	
 # ----
 # main
 # ----
 
 if __name__ == "__main__":
-	#import sys
 	#solve(sys.stdin, sys.stdout)
 	read(0)
-	pfdPrint()
+	output()
