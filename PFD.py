@@ -7,7 +7,6 @@ import sys
 DEBUG = True
 dWrite = sys.stderr.write		# aliasing?
 v = []
-if DEBUG: dWrite('BOOYAKASHA: {0}\n'.format(4) )
 
 s = 0
 a = 1
@@ -17,19 +16,24 @@ class Vertex:
 	"""
 		class.
 	"""
-	def __init__ (v, d):
-		value = v
+	def __init__ (self, v, d):
+		self.value = v
 		#self.k = k		# number of dependents
-		dependents = d
+		self.dependents = d
+		#successors = []
+	 
+	def __str__(self):
+		# for debug
+		return str(value)
 		
 	
 
-def read (x):
+def read (r):
 	"""
 		Read and parse input.
 	"""
 	
-	line = raw_input()		# inputs an entire line
+	line = r.readline()		# inputs an entire line
 	tokens = line.split()		# splits string into list of string tokens
 	iList = [int(x) for x in tokens]		# casts all the strings into ints
 	n = iList[0]		# number of tasks
@@ -38,11 +42,11 @@ def read (x):
 	assert m < n, 'm must be less than n'
 	if DEBUG: dWrite('number of tasks n: {0}\n'.format(n) )		# {x} required in py 2.6
 	if DEBUG: dWrite('number of rules m: {0}\n'.format(m) )
-	tasks = [ [] ]*n		# lists of lists
 	global v		# necessary to access v in this function
+	v = [Vertex(i, []) for i in xrange(n)]
 	
 	for i in xrange(m):
-		line = raw_input()
+		line = r.readline()
 		tokens = line.split()
 		iList = [int(x) for x in tokens]
 		
@@ -52,8 +56,9 @@ def read (x):
 		assert k > 0, 'no dependents.'		# must be at least 1 dependent?
 		dependents = iList[2:]
 		if DEBUG: dWrite('dependents list: {0}\n'.format(dependents) )
-		v += [Vertex(i+1, dependents)]
-		if DEBUG: dWrite('v: {0}\n'.format(v) )
+		v[target-1].dependents = dependents		# -1 necessary
+		#if DEBUG: dWrite('v: {0}\n'.format(v) )
+	return v
 	
 def solve ():
 	"""
@@ -81,6 +86,6 @@ def output ():
 # ----
 
 if __name__ == "__main__":
-	read(0)
+	read(sys.stdin)
 	solve()
 	output()
