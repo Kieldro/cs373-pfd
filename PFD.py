@@ -19,7 +19,8 @@ def read (x):
 	iList = [int(x) for x in tokens]		# casts all the strings into ints
 	n = iList[0]		# number of tasks
 	m = iList[1]		# number of rules
-	assert m >= 1, 'm is too small'		# must be at least 1 task?
+	assert n <= 100, 'n too large'		# must be at least 1 task?
+	assert m < n, 'm must be less than n'
 	if DEBUG: dWrite('number of tasks n: {}\n'.format(n) )
 	if DEBUG: dWrite('number of rules m: {}\n'.format(m) )
 	
