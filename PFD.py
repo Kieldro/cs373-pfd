@@ -23,6 +23,7 @@ def read (x):
 	assert m < n, 'm must be less than n'
 	if DEBUG: dWrite('number of tasks n: {}\n'.format(n) )
 	if DEBUG: dWrite('number of rules m: {}\n'.format(m) )
+	tasks = [ [] ]*n		# lists of lists
 	
 	for i in xrange(m):
 		line = raw_input()
@@ -32,13 +33,18 @@ def read (x):
 		target = iList[0]
 		if DEBUG: dWrite('target: {}\n'.format(target) )
 		k = iList[1]		# number of dependents
-		assert k > 0, 'no dependents'		# must be at least 1 dependent?
+		assert k > 0, 'no dependents.'		# must be at least 1 dependent?
 		dependents = iList[2:]
-		if DEBUG: dWrite('dependents: {}\n'.format(dependents) )
-			
+		tasks[target-1] = dependents
+		if DEBUG: dWrite('tasks: {}\n'.format(tasks) )
 	
+def solve ():
+	"""
+		solve.
+	"""
 	
-	
+	if(True or tasks[t] == []):
+		1
 	
 
 def output ():
