@@ -6,11 +6,7 @@ import sys
 # globals
 DEBUG = True
 dWrite = sys.stderr.write		# aliasing?
-v = []
-
-s = 0
-a = 1
-i = 2
+v = []		# list of Vertex objects
 
 class Vertex:
 	"""
@@ -20,11 +16,12 @@ class Vertex:
 		self.value = v
 		#self.k = k		# number of dependents
 		self.dependents = d
-		#successors = []
+		self.successors = []
+		self.done = False
 	 
 	def __str__(self):
 		# for debug
-		return str(value)
+		return str(self.value)
 		
 	
 
@@ -57,35 +54,66 @@ def read (r):
 		dependents = iList[2:]
 		if DEBUG: dWrite('dependents list: {0}\n'.format(dependents) )
 		v[target-1].dependents = dependents		# -1 necessary
-		#if DEBUG: dWrite('v: {0}\n'.format(v) )
+		
+		for d in dependents :
+			v[d-1].successors += [target]
+		
+		if DEBUG: dWrite('v: {0}\n'.format([str(s) for s in v]) )
+	
 	return v
 	
-def solve ():
+def solve () :
 	"""
 		solve.
 	"""
+	global v
+	free_vertices = []
+	solution = []
 	
 	# find tasks with 0 dependents
 	for task in v:
-		if(task == []):
-			if DEBUG: dWrite('len of task: {0}\n'.format(len(task) ) )
-		
+		if(len(task.dependents) == 0 and not task.done) :
+			if DEBUG: dWrite('len of task.dependents: {0}\n'.format(len(task.dependents) ) )
+			free_vertices += [task]
 	
+	# find smallest vertex		
+	smallest = free_vertices[0]
+	for task in free_vertices :
+		if (task.value < smallest.value) :
+			smallest = task
+			
+	solution += [smallest.value]
+	free_vertices.remove(smallest)
+	smallest.done = True
+	
+	# remove smallest from sucesssors
+	print smallest.value
+	for task in smallest.successors :
+		if DEBUG: dWrite('task: {0}\n'.format(task ) )
+		if DEBUG: dWrite('v[task-1].dependents: {0}\n'.format(v[task-1].dependents) )
+		if smallest.value in v[task-1].dependents:
+			v[task-1].dependents.remove(smallest.value)
+	
+	
+	return solution
 
-def output ():
+def output (w, solution):
 	"""
-		pydoc
+		output() function writes the solutions list as a string.
 	"""
+	if DEBUG: dWrite('DEBUG: output()...\n')
+	for s in solution :
+		w.write('{0} '.format(s) )
 	
-	print 's:', s		# no str needed with ,
-	print 'a:', a
-	print 'i:', i
-	
+	if DEBUG: dWrite('END OF DEBUG: output()\n')
 # ----
 # main
 # ----
 
 if __name__ == "__main__":
-	read(sys.stdin)
-	solve()
-	output()
+	w = sys.stdout
+	r = sys.stdin
+	
+	read(r)
+	solution = solve()
+	output(w, solution)
