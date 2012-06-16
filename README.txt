@@ -8,11 +8,11 @@ E-mail: kieldro@gmail.com
 Estimated number of hours: 12
 Actual    number of hours:
 
-Partner First Name: Fayze
+Partner First Name: Fayz
 Partner Last Name: Rahman
-Partner EID:
-Partner E-mail:
-Partner Estimated number of hours:
+Partner EID: fnr75
+Partner E-mail: fayz.rahman@utexas.edu
+Partner Estimated number of hours: 10
 Partner Actual number of hours:
 
 Turnin CS Username: keo
