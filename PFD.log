@@ -1,3 +1,9 @@
+commit de9a10cdc793e00a63778ca02db24d3dbe0a7698
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Sat Jun 16 21:31:08 2012 -0500
+
+    PFD should output correctly now. Added a few more tests.
+
 commit a56b61ee10156baf68f2a94c44818ebb1aa8f741
 Author: Ian Buitrago <kieldro@gmail.com>
 Date:   Sat Jun 16 19:38:56 2012 -0500

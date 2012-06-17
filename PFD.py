@@ -106,7 +106,7 @@ def output (w, solution):
 	"""
 	if DEBUG: dWrite('DEBUG: output()...\n')
 	for s in solution :
-		w.write('{0} '.format(s) )
+		w.write(str(s) + ' ')
 	w.write('\n')		# ok for sphere?
 
 # ----
