@@ -13,7 +13,7 @@ python $unit #&> $unit.out
 
 if ([ $? == 0 ]); then
 	echo RUNNING SOURCE...
-	python $source < $inFile #> $outFile
+	python $source < $inFile > $outFile
 
 	echo CHECKING OUTPUT...
 	diff -lc RunPFD.out jwilke-RunPFD.out
