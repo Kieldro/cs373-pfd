@@ -23,6 +23,13 @@ Comments:
 * hashbang in script?
 * modify loop inside loop?
 
+TODO:
+* write function/calls documentation
+* acceptance tests
+* finish RunPFD
+* asserts?
+*
+
 ----------------
 Pair Programming
 ----------------
