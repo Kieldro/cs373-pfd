@@ -3,7 +3,7 @@ python=true
 
 source="PFD.py"
 unit="TestPFD.py"
-inFile="RunPFD.in"
+inFile="jwilke-RunPFD.in"
 outFile="RunPFD.out"
 noError=false
 
@@ -16,7 +16,7 @@ if ([ $? == 0 ]); then
 	python $source < $inFile #> $outFile
 
 	echo CHECKING OUTPUT...
-	diff -lc RunPFD.out RunPFD.in
+	diff -lc RunPFD.out jwilke-RunPFD.out
 
 	echo GENERATING COMMIT LOG...
 	git log > PFD.log

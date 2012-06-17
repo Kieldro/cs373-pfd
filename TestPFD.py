@@ -90,6 +90,18 @@ class TestPFD (unittest.TestCase) :
 		s = PFD.solve(v)
 		self.assert_(s == [1, 3, 2, 4, 5])
 
+	def test_solve_4 (self) :
+		r = StringIO.StringIO("6 3\n1 1 6\n4 1 6\n5 1 3")
+		v = PFD.read(r)
+		s = PFD.solve(v)
+		self.assert_(s == [2, 3, 5, 6, 1, 4])
+
+	def test_solve_5 (self) :
+		r = StringIO.StringIO("3 1\n1 1 2\n")
+		v = PFD.read(r)
+		s = PFD.solve(v)
+		self.assert_(s == [2, 1, 3])
+
 	# ----
 	# output
 	# ----

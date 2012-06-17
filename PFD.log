@@ -1,3 +1,9 @@
+commit a56b61ee10156baf68f2a94c44818ebb1aa8f741
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Sat Jun 16 19:38:56 2012 -0500
+
+    fixed issue #13, free_vertices was not emptying.
+
 commit b0e7b57dfb4f6dc31cfaac37a5a8b8327dabeeaa
 Author: Fayz Rahman <fayz.rahman@utexas.edu>
 Date:   Sat Jun 16 17:58:47 2012 -0500
