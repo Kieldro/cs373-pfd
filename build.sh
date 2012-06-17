@@ -1,15 +1,13 @@
 # file variables
-python=true
-
 source="PFD.py"
 unit="TestPFD.py"
-inFile="jwilke-RunPFD.in"
+inFile="RunPFD.in"
 outFile="RunPFD.out"
 noError=false
 
 
 echo RUNNING UNIT TESTS...
-python $unit #&> $unit.out
+python $unit &> $unit.out
 
 if ([ $? == 0 ]); then
 	echo RUNNING SOURCE...

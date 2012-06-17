@@ -2,6 +2,7 @@
 #?!/usr/bin/env python
 
 import sys
+from heapq import *
 
 # globals
 DEBUG = not True
@@ -77,19 +78,14 @@ def solve (v) :
 		# add all free tasks (0 dependents) to free container
 		for task in v:
 			if len(task.dependents) == 0 and task.usable :
-				free_vertices += [task]
+				heappush(free_vertices, (task.value, task) )
 				task.usable = False
 
-		# find smallest vertex
-		smallest = free_vertices[0]
-		for task in free_vertices :
-			if (task.value < smallest.value) :
-				smallest = task
+		# remove smallest vertex
+		_, smallest = heappop(free_vertices)		# by virtue of heapq
+		
 		# apend to solution
 		solution += [smallest.value]
-		
-		# remove from free container
-		free_vertices.remove(smallest)
 		
 		# remove smallest from successors
 		for task in smallest.successors :
