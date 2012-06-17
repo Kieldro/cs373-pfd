@@ -15,7 +15,6 @@ if ([ $? == 0 ]); then
 	echo RUNNING SOURCE...
 	python $source < $inFile #> $outFile
 
-<<MULTICOMMENT
 	echo CHECKING OUTPUT...
 	diff -lc RunPFD.out RunPFD.in
 
@@ -28,6 +27,7 @@ if ([ $? == 0 ]); then
 	echo RUNNING PYDOC...
 	pydoc -w ./$source
 
+<<MULTICOMMENT
 	#echo ZIPPING FILE...
 	
 	

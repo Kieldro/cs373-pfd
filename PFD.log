@@ -1,3 +1,51 @@
+commit b0e7b57dfb4f6dc31cfaac37a5a8b8327dabeeaa
+Author: Fayz Rahman <fayz.rahman@utexas.edu>
+Date:   Sat Jun 16 17:58:47 2012 -0500
+
+    Updated partner info in README
+
+commit 55352dcbcd473e9b1bdf85e3fa87bafe98d19e67
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Fri Jun 15 17:41:14 2012 -0500
+
+    compiles.
+
+commit 48d44016a4a6bea78d2787abe5a0aa27de1b21b1
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Fri Jun 15 15:13:19 2012 -0500
+
+    Worked on read(), wrote unit tests for them.
+
+commit 3b715ae9cfe54b7e68ee3e8b950f604f2ae585f7
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Fri Jun 15 12:56:54 2012 -0500
+
+    does not compile.
+
+commit 9656445f81dbc3c0476fcd1c95819699d518e2db
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Fri Jun 15 00:01:58 2012 -0500
+
+    read() function finished.
+
+commit 17c7a081a31848dd6b38aa97ae66cda9843f2481
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Thu Jun 14 21:15:57 2012 -0500
+
+    added more asserts.
+
+commit 6f9a9dadb6c0fda036976d8293090d52f0feade8
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Thu Jun 14 21:03:26 2012 -0500
+
+    input works.
+
+commit 60f696e10498516e4ec1ff77bc86e22989190f72
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Thu Jun 14 14:08:51 2012 -0500
+
+    build script improved.
+
 commit 88d52e695cc10ddf522d858192fb7c02265657a2
 Author: Ian Buitrago <kieldro@gmail.com>
 Date:   Wed Jun 13 12:44:00 2012 -0500

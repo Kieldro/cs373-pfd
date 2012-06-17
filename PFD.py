@@ -6,7 +6,6 @@ import sys
 # globals
 DEBUG = True
 dWrite = sys.stderr.write		# aliasing?
-v = []		# list of Vertex objects
 
 class Vertex:
 	"""
@@ -18,7 +17,7 @@ class Vertex:
 		self.dependents = d
 		self.successors = []
 		self.done = False
-	 
+	
 	def __str__(self):
 		# for debug
 		return str(self.value)
@@ -39,8 +38,7 @@ def read (r):
 	assert m < n, 'm must be less than n'
 	if DEBUG: dWrite('number of tasks n: {0}\n'.format(n) )		# {x} required in py 2.6
 	if DEBUG: dWrite('number of rules m: {0}\n'.format(m) )
-	global v		# necessary to access v in this function
-	v = [Vertex(i, []) for i in xrange(n)]
+	v = [Vertex(i+1, []) for i in xrange(n)]
 	
 	for i in xrange(m):
 		line = r.readline()
@@ -62,39 +60,51 @@ def read (r):
 	
 	return v
 	
-def solve () :
+def solve (v) :
 	"""
-		solve.
+		finds the solution
+		v is a list of Vertex objects
+		return a list of ints as solution
 	"""
-	global v
+	if DEBUG: dWrite('DEBUG: solve()...\n')
 	free_vertices = []
 	solution = []
 	
-	# find tasks with 0 dependents
-	for task in v:
-		if(len(task.dependents) == 0 and not task.done) :
-			if DEBUG: dWrite('len of task.dependents: {0}\n'.format(len(task.dependents) ) )
-			free_vertices += [task]
-	
-	# find smallest vertex		
-	smallest = free_vertices[0]
-	for task in free_vertices :
-		if (task.value < smallest.value) :
-			smallest = task
+	while len(solution) != len(v):
+		# find tasks with 0 dependents
+		if DEBUG: dWrite('free tasks:')
+		for task in v:
+			if(len(task.dependents) == 0 and not task.done) :
+				if DEBUG: dWrite('{0} '.format(task ))
+				free_vertices += [task]
+
+		if DEBUG: dWrite('\n\tfree_vertices: {0}'.format([str(fv) for fv in free_vertices]))
+
+		while len(free_vertices) != 0:
+			# find smallest vertex		
+			smallest = free_vertices[0]
+			for task in free_vertices :
+				if (task.value < smallest.value) :
+					smallest = task
+			if DEBUG: dWrite('\n\tSmallest: {0}\n'.format(smallest))
+
+			solution += [smallest.value]
+			free_vertices.remove(smallest)
+			if DEBUG: dWrite('\tremoved from free: {0}\n'.format(smallest.value) )
+			smallest.done = True
 			
-	solution += [smallest.value]
-	free_vertices.remove(smallest)
-	smallest.done = True
-	
-	# remove smallest from sucesssors
-	print smallest.value
-	for task in smallest.successors :
-		if DEBUG: dWrite('task: {0}\n'.format(task ) )
-		if DEBUG: dWrite('v[task-1].dependents: {0}\n'.format(v[task-1].dependents) )
-		if smallest.value in v[task-1].dependents:
-			v[task-1].dependents.remove(smallest.value)
+			# remove smallest from successors
+			print smallest.value
+			if DEBUG: dWrite('\tsmallest.successors: {0}\n'.format(smallest.successors) )
+			for task in smallest.successors :
+				if DEBUG: dWrite('\ttask: {0}\n'.format(task ) )
+				if DEBUG: dWrite('\tv[task-1].dependents: {0}\n'.format(v[task-1].dependents) )
+				if smallest.value in v[task-1].dependents:
+					v[task-1].dependents.remove(smallest.value)
 	
 	
+	if DEBUG: dWrite('return solution: {0}\n'.format(solution) )
+
 	return solution
 
 def output (w, solution):
@@ -104,8 +114,8 @@ def output (w, solution):
 	if DEBUG: dWrite('DEBUG: output()...\n')
 	for s in solution :
 		w.write('{0} '.format(s) )
-	
-	if DEBUG: dWrite('END OF DEBUG: output()\n')
+	w.write('\n')		# ok for sphere?
+
 # ----
 # main
 # ----
@@ -114,6 +124,6 @@ if __name__ == "__main__":
 	w = sys.stdout
 	r = sys.stdin
 	
-	read(r)
-	solution = solve()
+	v = read(r)
+	solution = solve(v)
 	output(w, solution)

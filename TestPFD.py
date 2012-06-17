@@ -67,7 +67,29 @@ class TestPFD (unittest.TestCase) :
 		self.assert_(v[2-1].successors == [1])
 		self.assert_(v[3-1].successors == [2, 4])
 		self.assert_(v[4-1].successors == [])
-    
+
+	# ----
+	# solve
+	# ----
+
+	def test_solve_1 (self) :
+		#v = [Vertex(i+1, [i]) for i in xrange(4)]
+		r = StringIO.StringIO("4 3\n1 1 2\n2 1 3\n4 1 3\n")
+		v = PFD.read(r)
+		s = PFD.solve(v)
+
+	def test_solve_2 (self) :
+		r = StringIO.StringIO("3 2\n3 1 2\n2 1 1\n")
+		v = PFD.read(r)
+		s = PFD.solve(v)
+		self.assert_(s == [1, 2, 3])
+
+	def test_solve_3 (self) :
+		r = StringIO.StringIO("5 3\n5 2 4 3\n4 2 3 2\n2 1 3")
+		v = PFD.read(r)
+		s = PFD.solve(v)
+		self.assert_(s == [1, 3, 2, 4, 5])
+
 	# ----
 	# output
 	# ----
@@ -75,7 +97,17 @@ class TestPFD (unittest.TestCase) :
 	def test_output_1 (self) :
 		w = StringIO.StringIO()
 		v = PFD.output(w, [1, 2, 3])
-		self.assert_(w.getvalue() == "1 2 3 ")
+		self.assert_(w.getvalue() == "1 2 3 \n")
+
+	def test_output_2 (self) :
+		w = StringIO.StringIO()
+		v = PFD.output(w, [1])
+		self.assert_(w.getvalue() == "1 \n")
+
+	def test_output_3 (self) :
+		w = StringIO.StringIO()
+		v = PFD.output(w, [1, 2, 3, 4])
+		self.assert_(w.getvalue() == "1 2 3 4 \n")
 
 # ----
 # main
