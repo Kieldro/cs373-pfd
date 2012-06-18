@@ -1,3 +1,45 @@
+commit 4ccc7cd1561649099dcbe5eb2e14df4db011ac89
+Author: Fayz Rahman <fayz.rahman@utexas.edu>
+Date:   Mon Jun 18 14:00:44 2012 -0500
+
+    Though not neccessary, added test generator
+
+commit c5c5f2cd30ea11b417513b19f0eb5539d77d8b7e
+Author: Fayz Rahman <fayz.rahman@utexas.edu>
+Date:   Mon Jun 18 13:38:01 2012 -0500
+
+    Func. comments to PFD, synched changes to Sphere.
+
+commit 47e4f7e1af4dcdce0aaf9b99bd7446bf48c53b5c
+Author: Fayz Rahman <fayz.rahman@utexas.edu>
+Date:   Mon Jun 18 13:01:39 2012 -0500
+
+    Forgot to add pfd in last commit
+
+commit 899a222b2c78efe7adbf24b41d57a4b3097d2374
+Author: Fayz Rahman <fayz.rahman@utexas.edu>
+Date:   Mon Jun 18 12:55:47 2012 -0500
+
+    New RunPFD, new 'run' methon in PFD with new tests
+
+commit 154000628877a48fc6d1657954819bb890175312
+Author: Fayz Rahman <fayz.rahman@utexas.edu>
+Date:   Mon Jun 18 01:06:39 2012 -0500
+
+    RunPFD.in and .out are now a proper acceptance test
+
+commit f52148932af7a21be2a95433e531140aa738823b
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Sun Jun 17 18:53:39 2012 -0500
+
+    updated README
+
+commit 6d3301c8639e9bcc22312d983d8c860df2b36339
+Author: Ian Buitrago <kieldro@gmail.com>
+Date:   Sun Jun 17 18:52:37 2012 -0500
+
+    added testGen.py.
+
 commit de039bdf90ec7b9ee13d2c10507bb4ab3548dd1a
 Author: Ian Buitrago <kieldro@gmail.com>
 Date:   Sun Jun 17 17:42:56 2012 -0500

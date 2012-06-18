@@ -6,14 +6,14 @@ Last Name: Buitrago
 EID: ib
 E-mail: kieldro@gmail.com
 Estimated number of hours: 12
-Actual    number of hours:
+Actual    number of hours: 10
 
 Partner First Name: Fayz
 Partner Last Name: Rahman
 Partner EID: fnr75
 Partner E-mail: fayz.rahman@utexas.edu
 Partner Estimated number of hours: 10
-Partner Actual number of hours:
+Partner Actual number of hours: 10
 
 Turnin CS Username: keo
 GitHub ID: Kieldro
@@ -24,11 +24,6 @@ Comments:
 * modify loop inside loop?
 
 TODO:
-* write function/calls documentation
-* acceptance tests
-* finish RunPFD
-* asserts?
-*
 
 ----------------
 Pair Programming

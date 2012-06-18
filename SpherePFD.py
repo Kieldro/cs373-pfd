@@ -2,11 +2,11 @@
 #?!/usr/bin/env python
 
 import sys
-from heapq import *
+from heapq import heappush, heappop
 
 # globals
 DEBUG = not True
-dWrite = sys.stderr.write		# aliasing?
+dWrite = sys.stderr.write
 
 class Vertex:
 	"""
@@ -43,7 +43,7 @@ def read (r):
 	m = iList[1]		# number of rules
 	assert n <= 100, 'n too large'		# must be at least 1 task?
 	assert m <= 100, 'm must be less than n'
-	if DEBUG: dWrite('number of tasks n: {0}\n'.format(n) )		# {x} required in py 2.6
+	if DEBUG: dWrite('number of tasks n: {0}\n'.format(n) )
 	if DEBUG: dWrite('number of rules m: {0}\n'.format(m) )
 	v = [Vertex(i+1, []) for i in xrange(n)]
 	
@@ -53,12 +53,10 @@ def read (r):
 		iList = [int(x) for x in tokens]
 		
 		target = iList[0]
-		if DEBUG: dWrite('target: {0}\n'.format(target) )
 		k = iList[1]		# number of dependents
 		assert k >= 0, 'k must be non negative.'		# must be at least 1 dependent?
 		
 		dependents = iList[2:]
-		if DEBUG: dWrite('dependents list: {0}\n'.format(dependents) )
 		v[target-1].dependents = dependents		# -1 necessary
 		
 		for d in dependents :
@@ -95,8 +93,8 @@ def solve (v) :
 		
 		# remove smallest from successors
 		for task in smallest.successors :
-			if smallest.value in v[task-1].dependents:
-				v[task-1].dependents.remove(smallest.value)
+			assert smallest.value in v[task-1].dependents
+			v[task-1].dependents.remove(smallest.value)
 	
 	if DEBUG: dWrite('return solution: {0}\n'.format(solution) )
 	
@@ -108,6 +106,7 @@ def output (w, solution):
 	w is a writer
 	solution is a list of ints
 	"""
+	assert w is not None
 	if DEBUG: dWrite('DEBUG: output()...\n')
 	for s in solution :
 		w.write(str(s) + ' ')
@@ -119,8 +118,11 @@ def run(r, w) :
 	r is a reader
 	w is a writer
 	"""
+	assert r is not None
+	assert w is not None
 	v = read(r)
 	solution = solve(v)
 	output(w, solution)
-	
-run(sys.stdin, sys.stdout)
+
+if __name__ == '__main__':
+	run(sys.stdin, sys.stdout)

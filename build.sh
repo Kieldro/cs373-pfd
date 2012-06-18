@@ -7,14 +7,13 @@ noError=false
 
 
 echo RUNNING UNIT TESTS...
-python $unit &> $unit.out
+python $unit &> TestPFD.out
 
 if ([ $? == 0 ]); then
 	echo RUNNING SOURCE...
 	python $source < $inFile > $outFile
 
-	echo CHECKING OUTPUT...
-	diff -lc RunPFD.out jwilke-RunPFD.out
+	#echo CHECKING OUTPUT...; diff -lc RunPFD.out jwilke-RunPFD.out
 
 	echo GENERATING COMMIT LOG...
 	git log > PFD.log
