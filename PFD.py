@@ -105,14 +105,7 @@ def output (w, solution):
 		w.write(str(s) + ' ')
 	w.write('\n')		# ok for sphere?
 
-# ----
-# main
-# ----
-
-if __name__ == "__main__":
-	w = sys.stdout
-	r = sys.stdin
-	
+def run(r, w) :
 	v = read(r)
 	solution = solve(v)
 	output(w, solution)
