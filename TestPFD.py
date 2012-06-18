@@ -77,6 +77,7 @@ class TestPFD (unittest.TestCase) :
 		r = StringIO.StringIO("4 3\n1 1 2\n2 1 3\n4 1 3\n")
 		v = PFD.read(r)
 		s = PFD.solve(v)
+		self.assert_(s == [3, 2, 1, 4])
 
 	def test_solve_2 (self) :
 		r = StringIO.StringIO("3 2\n3 1 2\n2 1 1\n")
@@ -102,9 +103,9 @@ class TestPFD (unittest.TestCase) :
 		s = PFD.solve(v)
 		self.assert_(s == [2, 1, 3])
 
-	# ----
+	# ------
 	# output
-	# ----
+	# ------
 
 	def test_output_1 (self) :
 		w = StringIO.StringIO()
@@ -120,6 +121,28 @@ class TestPFD (unittest.TestCase) :
 		w = StringIO.StringIO()
 		v = PFD.output(w, [1, 2, 3, 4])
 		self.assert_(w.getvalue() == "1 2 3 4 \n")
+		
+	# ---
+	# run
+	# ---
+	
+	def test_run_1 (self) :
+		r = StringIO.StringIO("5 4\n3 2 1 5\n2 2 5 3\n4 1 3\n5 1 1\n")
+		w = StringIO.StringIO()
+		PFD.run(r, w)
+		self.assert_(w.getvalue() == "1 5 3 2 4 \n")
+		
+	def test_run_2 (self) :
+		r = StringIO.StringIO("6 3\n1 1 6\n4 1 6\n5 1 3")
+		w = StringIO.StringIO()
+		PFD.run(r, w)
+		self.assert_(w.getvalue() == "2 3 5 6 1 4 \n")
+	
+	def test_run_3 (self) :
+		r = StringIO.StringIO("3 3\n3 0\n2 1 1\n1 1 3")
+		w = StringIO.StringIO()
+		PFD.run(r, w)
+		self.assert_(w.getvalue() == "3 1 2 \n")
 
 # ----
 # main
