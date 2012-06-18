@@ -10,7 +10,11 @@ dWrite = sys.stderr.write		# aliasing?
 
 class Vertex:
 	"""
-		class.
+	Represents a task.
+	value - task number
+	dependents - list of dependent vertices as ints
+	successors - list of successor vertices as ints
+	usable - boolean used to mark vertex when solving
 	"""
 	def __init__ (self, v, d):
 		self.value = v
@@ -27,7 +31,9 @@ class Vertex:
 
 def read (r):
 	"""
-		Read and parse input.
+	Reads input, parses it, and sets up all the vertices.
+	r is a reader
+	returns a list of vertices that represents the input file
 	"""
 	
 	line = r.readline()		# inputs an entire line
@@ -65,9 +71,9 @@ def read (r):
 
 def solve (v) :
 	"""
-		finds the solution
-		v is a list of Vertex objects
-		return a list of ints as solution
+	Finds the proper ordering of tasks.
+	v is a list of Vertex objects
+	returns a list of ints as the solution
 	"""
 	if DEBUG: dWrite('DEBUG: solve()...\n')
 	free_vertices = []
@@ -98,7 +104,9 @@ def solve (v) :
 
 def output (w, solution):
 	"""
-		output() function writes the solutions list as a string.
+	Writes the solution as a list of strings.
+	w is a writer
+	solution is a list of ints
 	"""
 	if DEBUG: dWrite('DEBUG: output()...\n')
 	for s in solution :
@@ -106,6 +114,11 @@ def output (w, solution):
 	w.write('\n')		# ok for sphere?
 
 def run(r, w) :
+	"""
+	Runs the entire program.
+	r is a reader
+	w is a writer
+	"""
 	v = read(r)
 	solution = solve(v)
 	output(w, solution)
